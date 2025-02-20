@@ -13,12 +13,3 @@ docker context use default
 - Go to the Exec panel of the Redis container
 - Execute `/scripts/load.sh`
 
-
-## Builders
-
-```bash
-docker buildx ls
-
-docker context use <builder_name>
-docker context rm <builder_name>
-```
