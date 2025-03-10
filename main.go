@@ -47,6 +47,7 @@ func main() {
 	})
 
 	appName := generateFunnyName()
+	fmt.Println("🐳 Application name:", appName)
 
 	var httpPort = os.Getenv("HTTP_PORT")
 	if httpPort == "" {

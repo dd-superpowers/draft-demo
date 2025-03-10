@@ -7,16 +7,16 @@ variable "TAG" {
 }
 
 group "default" {
-  targets = ["multi-arch-build"]
+  targets = ["paris-restaurants-image"]
 }
 
-target "multi-arch-build" {
+target "paris-restaurants-image" {
   context = "."
   platforms = [
     "linux/amd64",
     "linux/arm64"
   ]
-  tags = ["${REPO}/restos:${TAG}"]
+  tags = ["${REPO}/paris-restaurants:${TAG}"]
 }
 
 # docker buildx bake --push --file docker-bake.hcl
