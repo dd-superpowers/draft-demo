@@ -8,7 +8,9 @@ services:
       - 6379:6379
     volumes:
       - ./scripts:/scripts
-      - ./data:/data
+      - redis-data:/data
+    post_start:
+      - command: /scripts/load.sh
 
   webapp:
     build: .
@@ -28,6 +30,8 @@ services:
           path: ./public
           target: /app/public
         - action: rebuild
-          path: ./Dockerfile
-        - action: rebuild
-          path: ./main.go
+          path: .
+          include: ["*.go", "Dockerfile"]
+
+volumes:
+  redis-data:
