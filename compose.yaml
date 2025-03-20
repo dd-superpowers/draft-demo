@@ -29,9 +29,14 @@ services:
         - action: sync
           path: ./public
           target: /app/public
+        # To be uncommented with DD 2.40
+        #- action: rebuild
+        #  path: .
+        #  include: ["*.go", "Dockerfile"]
         - action: rebuild
-          path: .
-          include: ["*.go", "Dockerfile"]
+          path: ./Dockerfile
+        - action: rebuild
+          path: ./main.go
 
 volumes:
   redis-data:
