@@ -1,0 +1,67 @@
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-restos
+  labels:
+    component: restos
+spec:
+  selector:
+    app: demo-restos
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-restos
+  labels:
+    component: restos
+spec:
+  replicas: 1 # 👋
+  selector:
+    matchLabels:
+      app: demo-restos
+  template:
+    metadata:
+      labels:
+        app: demo-restos
+    spec:
+      containers:
+        - name: demo-restos
+          image: philippecharriere494/restos:demo
+          env:
+          - name: MESSAGE
+            value: "👋 Hello World 🌍 I'm running on K8S on Docker"
+          - name: REDIS_URL
+            value: "redis-server:6379"
+          - name: TITLE
+            value: "My favorite restaurants in Paris 🇫🇷"
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          #imagePullPolicy: IfNotPresent
+
+---
+# Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-restos
+  labels:
+    component: restos
+spec:
+  rules:
+    - host: restos.0.0.0.0.nip.io
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service: 
+              name: demo-restos
+              port: 
+                number: 80
