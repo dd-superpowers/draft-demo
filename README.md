@@ -8,6 +8,7 @@ cd Dropbox/dd-superpowers/draft-demo
 
 ```bash
 docker context use default
+# or desktop-linux 🤔 need to check
 ```
 
 ## 🐳 Images
