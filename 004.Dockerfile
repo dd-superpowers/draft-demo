@@ -23,4 +23,5 @@ CMD ["./tiny-service"]
 
 # docker buildx build \
 #  --platform=linux/amd64,linux/arm64 \
-#  --push -t philippecharriere494/paris-restaurants:0.0.1 .
+#  --push -t philippecharriere494/restos:0.0.1 .
+# or use Docker Bake 🍰
