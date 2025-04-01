@@ -86,8 +86,8 @@ func main() {
 	mux.HandleFunc("/api/variables", func(response http.ResponseWriter, request *http.Request) {
 
 		variables := map[string]interface{}{
-			"message": message,
-			"appName": appName,
+			"message":   message,
+			"appName":   appName,
 			"mainTitle": mainTitle,
 		}
 
@@ -101,7 +101,6 @@ func main() {
 		response.WriteHeader(http.StatusOK)
 		response.Write(jsonString)
 	})
-
 
 	mux.HandleFunc("/api/restaurants", func(response http.ResponseWriter, request *http.Request) {
 		restaurants, err := getAllRestaurants(ctx, client)
@@ -126,7 +125,6 @@ func main() {
 	log.Fatal(errListening)
 }
 
-
 func generateFunnyName() string {
 	// Seed the random number generator
 	rand.Seed(uint64(time.Now().UnixMilli()))
@@ -143,7 +141,6 @@ func generateFunnyName() string {
 
 	return randomName
 }
-
 
 func getRestaurant(ctx context.Context, client *redis.Client, id string) (Restaurant, error) {
 	result, err := client.HGetAll(ctx, "restaurant:"+id).Result()
