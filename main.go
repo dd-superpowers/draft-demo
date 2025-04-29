@@ -54,10 +54,7 @@ func main() {
 		httpPort = "8080"
 	}
 
-	var message = os.Getenv("MESSAGE")
-	if message == "" {
-		message = "this is a message"
-	}
+	var message = "🎉 Hello from 🐙 Compose 👋"
 
 	var mainTitle = os.Getenv("TITLE")
 	if mainTitle == "" {

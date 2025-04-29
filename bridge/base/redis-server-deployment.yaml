@@ -1,0 +1,42 @@
+#! redis-server-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: redis-server
+    namespace: draft-demo
+    labels:
+        com.docker.compose.project: draft-demo
+        com.docker.compose.service: redis-server
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: draft-demo
+            com.docker.compose.service: redis-server
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: draft-demo
+                com.docker.compose.service: redis-server
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: redis-server
+                  image: redis:7.2.4
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: REDIS_ARGS
+                      value: "--save 30 1"
+                  ports:
+                    - name: redis-serv-6379
+                      containerPort: 6379
+                  volumeMounts:
+                    - name: data
+                      mountPath: /data
+            volumes:
+                - name: data
+                  persistentVolumeClaim:
+                    claimName: redis-server-redis-data

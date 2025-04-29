@@ -1,0 +1,19 @@
+#! webapp-service.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: Service
+metadata:
+    name: webapp-published
+    namespace: draft-demo
+    labels:
+        com.docker.compose.project: draft-demo
+        com.docker.compose.service: webapp
+spec:
+    selector:
+        com.docker.compose.project: draft-demo
+        com.docker.compose.service: webapp
+    ports:
+        - name: webapp-8080
+          port: 8080
+          protocol: TCP
+          targetPort: webapp-8080

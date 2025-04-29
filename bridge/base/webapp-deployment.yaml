@@ -1,0 +1,39 @@
+#! webapp-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: webapp
+    namespace: draft-demo
+    labels:
+        com.docker.compose.project: draft-demo
+        com.docker.compose.service: webapp
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: draft-demo
+            com.docker.compose.service: webapp
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: draft-demo
+                com.docker.compose.service: webapp
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: webapp
+                  image: restos
+                  imagePullPolicy: IfNotPresent
+                  env:
+                    - name: MESSAGE
+                      value: "\U0001F389 Hello from \U0001F433 Compose \U0001F44B"
+                    - name: REDIS_URL
+                      value: "redis-server:6379"
+                    - name: TITLE
+                      value: "My favorite restaurants"
+                  ports:
+                    - name: webapp-8080
+                      containerPort: 8080

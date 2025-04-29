@@ -1,0 +1,9 @@
+#! redis-server-redis-data-persistentVolumeClaim.yaml
+# Generated code, do not edit
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: redis-server-redis-data
+    namespace: draft-demo
+spec:
+    storageClassName: "hostpath" # see docker/desktop-storage-provisioner

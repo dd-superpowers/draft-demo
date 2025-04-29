@@ -1,0 +1,14 @@
+#! kustomization.yaml
+# Generated code, do not edit
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+    - 0-draft-demo-namespace.yaml
+    - default-network-policy.yaml
+    - redis-server-deployment.yaml
+    - redis-server-expose.yaml
+    - redis-server-redis-data-persistentVolumeClaim.yaml
+    - redis-server-service.yaml
+    - webapp-deployment.yaml
+    - webapp-expose.yaml
+    - webapp-service.yaml
