@@ -55,6 +55,7 @@ func main() {
 	}
 
 	var message = "🎉 Hello from 🐙 Compose 👋"
+	
 
 	var mainTitle = os.Getenv("TITLE")
 	if mainTitle == "" {

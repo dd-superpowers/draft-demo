@@ -7,8 +7,8 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - ./scripts:/scripts
       - redis-data:/data
+      - ./scripts:/scripts
     post_start:
       - command: /scripts/load.sh
 
@@ -30,13 +30,10 @@ services:
           path: ./public
           target: /app/public
         # To be uncommented with DD 2.40
-        #- action: rebuild
-        #  path: .
-        #  include: ["*.go", "Dockerfile"]
         - action: rebuild
-          path: ./Dockerfile
-        - action: rebuild
-          path: ./main.go
+          path: .
+          include: ["*.go", "Dockerfile"]
+        
 
 volumes:
   redis-data:
