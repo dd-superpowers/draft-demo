@@ -8,5 +8,7 @@ go mod tidy
 go build -o tiny-service
 EOF
 
+EXPOSE 8080
+
 COPY public ./public 
 CMD ["./tiny-service"]

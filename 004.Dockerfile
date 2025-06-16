@@ -18,6 +18,8 @@ FROM scratch
 WORKDIR /app
 COPY --from=builder /app/tiny-service .
 
+EXPOSE 8080
+
 COPY public ./public 
 CMD ["./tiny-service"]
 
